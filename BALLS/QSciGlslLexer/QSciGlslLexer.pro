@@ -4,14 +4,17 @@
 #
 #-------------------------------------------------
 
+QT       += core gui widgets
 TARGET = QSciGlslLexer
 TEMPLATE = lib
-CONFIG += staticlib
+CONFIG += qt warn_on staticlib c++11
 
-SOURCES += QSciGlslLexer.cpp
+SOURCES += QSciGlslLexer.cpp \
+		Constants.cpp
 
-HEADERS += QSciGlslLexer.hpp
+HEADERS += QSciGlslLexer.hpp \
+		Constants.hpp
 unix {
-    target.path = /usr/lib
-    INSTALLS += target
+		target.path = /usr/lib
+		INSTALLS += target
 }
