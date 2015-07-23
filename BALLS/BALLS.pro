@@ -5,4 +5,5 @@ TEMPLATE = subdirs
 SUBDIRS = \
     BALLS \
     QPropertyEditor \
-    BALLS-Tests
+    BALLS-Tests \
+    QSciGlslLexer

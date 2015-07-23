@@ -62,7 +62,6 @@ SOURCES += main.cpp\
 		Constants.cpp \
 		shader/ShaderInputs.cpp \
 		config/ProjectConfig.cpp \
-		ui/QsciLexerGLSL.cpp \
 		ui/docks/SceneSettings.cpp \
 		ui/docks/OpenGLInfo.cpp \
 		shader/ShaderUniform.cpp \
@@ -76,7 +75,6 @@ SOURCES += main.cpp\
 		exception/JsonException.cpp \
 		util/Logging.cpp \
 		ui/property/MatrixProperty.cpp \
-		shader/syntax/GLSLSyntax.cpp \
 		util/Trackball.cpp \
 		util/MetaTypeConverters.cpp \
 		ui/Uniforms.cpp \
@@ -97,7 +95,6 @@ HEADERS  += precompiled.hpp \
 		shader/ShaderInputs.hpp \
 		shader/ShaderUniform.hpp \
 		config/ProjectConfig.hpp \
-		ui/QsciLexerGLSL.h \
 		ui/docks/SceneSettings.hpp \
 		ui/docks/OpenGLInfo.hpp \
 		ui/property/Vector2Property.hpp \
@@ -109,7 +106,6 @@ HEADERS  += precompiled.hpp \
 		exception/JsonException.hpp \
 		util/Logging.hpp \
 		ui/property/MatrixProperty.hpp \
-		shader/syntax/GLSLSyntax.hpp \
 		util/Trackball.hpp \
 		ui/property/SamplerProperty.hpp \
 		util/MetaTypeConverters.hpp \
@@ -152,3 +148,18 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../QPro
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../QPropertyEditor/release/QPropertyEditor.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../QPropertyEditor/debug/QPropertyEditor.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../QPropertyEditor/libQPropertyEditor.a
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../QSciGlslLexer/release/ -lQSciGlslLexer
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../QSciGlslLexer/debug/ -lQSciGlslLexer
+else:unix: LIBS += -L$$OUT_PWD/../QSciGlslLexer/ -lQSciGlslLexer
+
+INCLUDEPATH += $$PWD/../QSciGlslLexer
+DEPENDPATH += $$PWD/../QSciGlslLexer
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../QSciGlslLexer/release/libQSciGlslLexer.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../QSciGlslLexer/debug/libQSciGlslLexer.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../QSciGlslLexer/release/QSciGlslLexer.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../QSciGlslLexer/debug/QSciGlslLexer.lib
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../QSciGlslLexer/libQSciGlslLexer.a
+
