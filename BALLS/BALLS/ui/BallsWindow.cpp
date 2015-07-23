@@ -10,7 +10,6 @@
 
 #include "QPropertyEditor/QPropertyModel.h"
 
-#include "ui/QsciLexerGLSL.h"
 #include "exception/FileException.hpp"
 #include "exception/JsonException.hpp"
 #include "Constants.hpp"
@@ -32,18 +31,18 @@ constexpr QSettings::Format FORMAT = QSettings::NativeFormat;
 BallsWindow::BallsWindow(QWidget* parent) noexcept :
 QMainWindow(parent),
             _generatorsInitialized(false),
-            _vertLexer(new QsciLexerGLSL(this)),
-            _fragLexer(new QsciLexerGLSL(this)),
-            _geomLexer(new QsciLexerGLSL(this)),
+            _vertLexer(QOpenGLShader::Vertex),
+            _fragLexer(QOpenGLShader::Fragment),
+            _geomLexer(QOpenGLShader::Geometry),
             _save(new QFileDialog(this, tr("Save BALLS project"), ".")),
             _load(new QFileDialog(this, tr("Load BALLS project"), ".")),
             _error(new QErrorMessage(this)),
 _settings(new QSettings(this)) {
   ui.setupUi(this);
 
-  ui.vertexEditor->setLexer(_vertLexer);
-  ui.fragmentEditor->setLexer(_fragLexer);
-  ui.geometryEditor->setLexer(_geomLexer);
+  ui.vertexEditor->setLexer(&_vertLexer);
+  ui.fragmentEditor->setLexer(&_fragLexer);
+  ui.geometryEditor->setLexer(&_geomLexer);
 
   ProjectConfig config = balls::config::loadFromFile(":/example/default.balls");
   ui.vertexEditor->setText(config.vertexShader);

@@ -5,6 +5,8 @@
 
 #include <QtGlobal>
 
+#include "QSciGlslLexer.hpp"
+
 #include "config/ProjectConfig.hpp"
 #include "shader/ShaderUniform.hpp"
 
@@ -41,9 +43,9 @@ private /* members */:
 
   QSettings* _settings;
 private /* UI components/dialogs/etc. */:
-  QsciLexerGLSL* _vertLexer;
-  QsciLexerGLSL* _fragLexer;
-  QsciLexerGLSL* _geomLexer;
+  QSciGlslLexer _vertLexer;
+  QSciGlslLexer _fragLexer;
+  QSciGlslLexer _geomLexer;
   QFileDialog* _save;
   QFileDialog* _load;
   QErrorMessage* _error;
